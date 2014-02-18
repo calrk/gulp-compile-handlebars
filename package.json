@@ -2,7 +2,7 @@
   "name": "gulp-compile-handlebars",
   "description": "Compiles handlebars",
   "engine": "node >= 0.10",
-  "devDependencies": {
+  "dependencies": {
     "event-stream": "~3.1.0",
     "handlebars": "~2.0.0-alpha.1",
     "map-stream": "~0.1.0",
