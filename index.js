@@ -8,8 +8,11 @@ module.exports = {
 	precompile: function(options){
 		function compile(file, cb){
 			var path = file.path;
-			basename = path.split('\\').pop().split('.').shift();
-			handlebars.registerPartial(basename, file.contents.toString());
+			if(path.match('partials') !== null){
+				basename = path.split('\\').pop().split('.').shift();
+				handlebars.registerPartial(basename, file.contents.toString());
+			}
+			return cb(null, file);
 		}
 		return es.pipeline(
 			map(compile)
@@ -21,7 +24,14 @@ module.exports = {
 
 		function compile(file, cb){
 			var path = file.path;
-			var compiledTemplate = handlebars.compile(file.contents.toString())();
+			var compiledTemplate;
+			if(path.match('partials') !== null){
+				return cb();
+			}
+			else{
+				compiledTemplate = handlebars.compile(file.contents.toString())();
+				
+			}
 
 			var newFile = clone(file);
 			newFile.contents = new Buffer(compiledTemplate);
