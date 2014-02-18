@@ -11,6 +11,9 @@ module.exports = {
 			basename = path.split('\\').pop().split('.').shift();
 			handlebars.registerPartial(basename, file.contents.toString());
 		}
+		return es.pipeline(
+			map(compile)
+		);
 	},
 
 	compile: function(options){
