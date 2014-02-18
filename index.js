@@ -5,28 +5,26 @@ var map = require('map-stream')
 	, rename = require('gulp-rename');
 
 module.exports = {
-	init: function(options){
-
+	precompile: function(options){
+		function compile(file, cb){
+			var path = file.path;
+			if(path.match('partials') !== null){
+				basename = path.split('\\').pop().split('.').shift();
+				handlebars.registerPartial(basename, file.contents.toString());
+			}
+			return cb(null, file);
+		}
+		return es.pipeline(
+			map(compile)
+		);
 	},
 
 	compile: function(options){
 		var opts = options ? options : {};
 
-		function loadPartials(file, cb){
-			console.log(file.path);
-		}
-
 		function compile(file, cb){
 			var path = file.path;
-			var compiledTemplate;
-			if(path.match('partials') !== null){
-				basename = path.split('\\').pop().split('.').shift();
-				handlebars.registerPartial(basename, file.contents.toString());
-				return cb();
-			}
-			else{
-				compiledTemplate = handlebars.compile(file.contents.toString())();
-			}
+			var compiledTemplate = handlebars.compile(file.contents.toString())();
 
 			var newFile = clone(file);
 			newFile.contents = new Buffer(compiledTemplate);
