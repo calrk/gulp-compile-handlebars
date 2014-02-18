@@ -8,5 +8,26 @@
     "map-stream": "~0.1.0",
     "gulp-rename": "~1.1.0",
     "clone": "~0.1.11"
-  }
+  },
+  "version": "0.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calrk/gulp-compile-handlebars"
+  },
+  "keywords": [
+    "compile",
+    "gulp",
+    "handlebars"
+  ],
+  "author": "Clark Lavery",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calrk/gulp-compile-handlebars/issues"
+  },
+  "homepage": "https://github.com/calrk/gulp-compile-handlebars"
 }
