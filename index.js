@@ -8,15 +8,9 @@ module.exports = {
 	precompile: function(options){
 		function compile(file, cb){
 			var path = file.path;
-			if(path.match('partials') !== null){
-				basename = path.split('\\').pop().split('.').shift();
-				handlebars.registerPartial(basename, file.contents.toString());
-			}
-			return cb(null, file);
+			basename = path.split('\\').pop().split('.').shift();
+			handlebars.registerPartial(basename, file.contents.toString());
 		}
-		return es.pipeline(
-			map(compile)
-		);
 	},
 
 	compile: function(options){
