@@ -15,14 +15,15 @@ module.exports = function(options){
 			handlebars.registerPartial(basename, file.contents.toString());
 			return cb();
 		}
-		else{
+
+		setTimeout(function(){
 			compiledTemplate = handlebars.compile(file.contents.toString())();
-		}
-
-		var newFile = clone(file);
-		newFile.contents = new Buffer(compiledTemplate);
-
-		return cb(null, newFile);
+	
+			var newFile = clone(file);
+			newFile.contents = new Buffer(compiledTemplate);
+	
+			return cb(null, newFile);
+		}, 1000);
 	}
 
 	var doRename = function(dir, base, ext){
