@@ -11,7 +11,7 @@ module.exports = function(options){
 		var path = file.path;
 		var compiledTemplate;
 		if(path.match('partials') !== null){
-			basename = path.split('\\').pop().split('.').shift();
+			basename = path.split('\\|\/').pop().split('.').shift();
 			handlebars.registerPartial(basename, file.contents.toString());
 			return cb();
 		}
