@@ -4,7 +4,7 @@
   "engine": "node >= 0.10",
   "dependencies": {
     "event-stream": "~3.1.0",
-    "handlebars": "~2.0.0-alpha.1",
+    "handlebars": "~4.5.1",
     "map-stream": "~0.1.0",
     "gulp-rename": "~1.1.0",
     "clone": "~0.1.11"
